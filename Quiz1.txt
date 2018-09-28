@@ -1,0 +1,41 @@
+-- 1
+CREATE TABLESPACE QUIZ_MANANA DATAFILE
+'C:\oraclexe\app\oracle\oradata\XE\QUIZ_MANANA1.DBF' SIZE 30M,
+'C:\oraclexe\app\oracle\oradata\XE\QUIZ_MANANA2.DBF' SIZE 30M,
+'C:\oraclexe\app\oracle\oradata\XE\QUIZ_MANANA3.DBF' SIZE 30M,
+
+-- 2
+CREATE PROFILE estudiante_quiz LIMIT
+SESSIONS_PER_USER UNLIMITED
+FAILED_LOGIN_ATTEMPTS UNLIMITED
+CPU_PER_SESSION UNLIMITED
+IDLE_TIME 15;
+
+-- 3
+
+CREATE USER carlos_2
+IDENTIFIED BY carlos_2
+DEFAULT TABLESPACE QUIZ_MANANA
+PROFILE estudiante_quiz;
+
+-- 4
+GRANT CONNECT TO carlos_2;
+
+
+
+queryS
+
+--1
+SELECT CONSECUTIVO,FECHA_NACIMIENTO,GENERO,municipio_residencia,PUNTAJE_GLOBAL
+FROM ICFES where rownum < 2 ORDER BY fecha_nacimiento ASC;
+
+--3
+SELECT COUNT(DISTINCT  colegio_nombre	) FROM ICFES;
+
+--4
+
+SELECT COUNT(tipo_documento) FROM ICFES WHERE municipio_residencia = 'PASTO';
+
+
+
+
